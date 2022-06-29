@@ -11,16 +11,19 @@ then
 	exit 1
 fi
 
+CONNECTIQ_SDK_URL="https://developer.garmin.com/downloads/connect-iq/sdks"
+CONNECTIQ_SDK_INFO_URL="${CONNECTIQ_SDK_URL}/sdks.json"
+
 #retrieve latest version if no version is specified
 if [[ -z $VERSION ]]
 then
-	VERSION=$(/usr/bin/curl -s https://developer.garmin.com/downloads/connect-iq/sdks/sdks.json | /usr/bin/jq -r '.[].version' | /usr/bin/sort | /usr/bin/tail -1)
+	VERSION=$(/usr/bin/curl -s "${CONNECTIQ_SDK_INFO_URL}" | /usr/bin/jq -r '.[].version' | /usr/bin/sort | /usr/bin/tail -1)
 	echo "Using the latest version ($VERSION)"
 fi
 
 #retrieve SDK file name from the version
-filename=$(/usr/bin/curl -s https://developer.garmin.com/downloads/connect-iq/sdks/sdks.json | /usr/bin/jq -r --arg version "$VERSION" '.[] | select(.version==$version) | .linux')
-url="https://developer.garmin.com/downloads/connect-iq/sdks/${filename}"
+filename=$(/usr/bin/curl -s "${CONNECTIQ_SDK_INFO_URL}" | /usr/bin/jq -r --arg version "$VERSION" '.[] | select(.version==$version) | .linux')
+url="${CONNECTIQ_SDK_URL}/${filename}"
 echo "Downloading from $url"
 
 /usr/bin/wget -q "${url}" -O /tmp/connectiq.zip;
