@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 LABEL maintainer="matthieu.corageoud@gmail.com"
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 LABEL description="ConnectIQ tester"
 
 # install required dependencies
@@ -25,7 +25,7 @@ ENV CONNECT_IQ_HOME /connectiq
 RUN mkdir -p ${CONNECT_IQ_HOME}
 
 # hardcoding the version for now
-ENV CONNECT_IQ_VERSION 4.1.3
+ENV CONNECT_IQ_VERSION 4.1.4
 
 # download the SDK
 COPY downloader.sh /root/downloader.sh
