@@ -41,6 +41,12 @@ info "Compiling application..."
 #otherwise, the devices files are fetched from the user home (the path is hard-coded in the compiler to "/.Garmin/ConnectIQ/Devices/"!)
 monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t
 
+#check if the compiler produced a resulting program file
+if [[ ! -f bin/app.prg ]]; then
+	info "Compilation failed!"
+	exit 1
+fi
+
 #create a fake display and run the simulator
 info "Launching simulator..."
 
