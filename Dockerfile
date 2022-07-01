@@ -1,4 +1,4 @@
-FROM ubuntu:latest as downloader
+FROM ubuntu:jammy as downloader
 
 LABEL maintainer="matthieu.corageoud@gmail.com"
 LABEL version="1.1.0"
@@ -29,7 +29,7 @@ RUN /root/downloader.sh $CONNECT_IQ_HOME $CONNECT_IQ_VERSION
 COPY devices.zip /tmp/devices.zip
 RUN unzip /tmp/devices.zip -d /connectiq-devices
 
-FROM ubuntu:latest as tester
+FROM ubuntu:jammy as tester
 
 # install required dependencies
 # libwebkit2gtk-4.0-37, libusb-1.0-0, libsm6 and xvfb are required by the simulator
