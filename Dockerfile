@@ -47,6 +47,5 @@ RUN unzip /tmp/devices.zip -d /root/.Garmin/ConnectIQ/Devices
 # copy custom tester script
 COPY tester.sh "${CONNECT_IQ_HOME}/bin/tester.sh"
 
-#CMD [ "/bin/bash" ]
 # do not use ${CONNECT_IQ_HOME} here because variable substitution won't work
 ENTRYPOINT [ "/bin/bash", "/connectiq/bin/tester.sh" ]
