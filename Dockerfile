@@ -18,7 +18,7 @@ RUN apt-get update && apt-get -y install \
 	jq \
 	wget \
 	unzip \
-	&& rm -rf /var/lib/apt/lists/*
+	&& apt-get clean
 
 # prepare ConnectIQ home folder
 ENV CONNECT_IQ_HOME /connectiq
