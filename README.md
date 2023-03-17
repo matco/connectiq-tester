@@ -2,7 +2,7 @@
 
 ConnectIQ Tester is a Docker image that can be used to run the tests "Run No Evil" of a ConnectIQ application. The image contains the SDK, the device bits for all wearables and the simulator.
 
-The image currently contains ConnectIQ SDK version `4.1.5` and all the wearable files retrieved on `2022-09-20`.
+The image currently contains ConnectIQ SDK version `4.2.2` and all the wearable files retrieved on `2023-03-17`.
 
 ## Usage
 
