@@ -6,7 +6,7 @@ The image currently contains ConnectIQ SDK version `4.2.4` and all the wearable 
 
 ## Usage
 
-The image requires you to bind the code of you application to a folder in the container and to set the working directory of the container to the same folder.
+The image requires to bind the code of your application to a folder in the container and to set the working directory of the container to the same folder.
 
 The Docker command has 2 optional parameters:
 * device_id: the id of one device supported by your application, as listed in your `manifest.xml` file, that will be used to run the tests. If you don't specify a device id, it will default to `fenix7`.
@@ -17,7 +17,7 @@ The simplest command is the following:
 ```
 docker run -v /path/to/your/app:/app -w /app ghcr.io/matco/connectiq-tester:latest
 ```
-The flag `-v` binds the folder containing your application to the `app` folder in the container. The flag `-w` tells the container to work in this repository (it is the working directory). It is required that the working directory matches the path where you bound your application in the container. With this command, a temporary certificate will be created and the application will be tested using a Fenix 7.
+The flag `-v` binds the folder containing your application to the `app` folder in the container. The flag `-w` tells the container to work in this repository (it is the working directory). It is required that the working directory matches the path where you bound your application in the container. With this command, a temporary certificate will be created, and the application will be tested using a Fenix 7.
 
 
 If you want to specify a difference device, just run:
@@ -26,7 +26,7 @@ docker run -v /path/to/your/app:/app -w /app ghcr.io/matco/connectiq-tester:late
 ```
 In this case, the application will be tested using a Venu 2.
 
-If you want to specify your own certificate, just run:
+To specify your own certificate, just run:
 ```
 docker run -v /path/to/your/app:/app -w /app ghcr.io/matco/connectiq-tester:latest venu2 certificate/key.der
 ```
