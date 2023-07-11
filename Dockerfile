@@ -1,7 +1,7 @@
 FROM ubuntu:kinetic as downloader
 
 LABEL maintainer="matthieu.corageoud@gmail.com"
-LABEL version="1.5.0"
+LABEL version="1.6.0"
 LABEL description="ConnectIQ tester"
 
 # install required dependencies
