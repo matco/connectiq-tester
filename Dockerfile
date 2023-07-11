@@ -18,7 +18,7 @@ ENV CONNECT_IQ_HOME /connectiq
 RUN mkdir -p ${CONNECT_IQ_HOME}
 
 # hardcoding the version for now
-ENV CONNECT_IQ_VERSION 4.2.4
+ENV CONNECT_IQ_VERSION 6.2.1
 
 # download the SDK
 COPY downloader.sh /root/downloader.sh
