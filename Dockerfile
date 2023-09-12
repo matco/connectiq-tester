@@ -1,4 +1,4 @@
-FROM ubuntu:kinetic as downloader
+FROM ubuntu:jammy as downloader
 
 LABEL maintainer="matthieu.corageoud@gmail.com"
 LABEL version="1.7.0"
