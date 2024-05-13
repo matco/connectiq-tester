@@ -37,7 +37,7 @@ fi
 #compile application
 info "Compiling application..."
 
-monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l 0
+monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l 3
 
 #check if the compiler produced a resulting program file
 if [[ ! -f bin/app.prg ]]; then
