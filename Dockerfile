@@ -1,7 +1,7 @@
 FROM ubuntu:jammy as downloader
 
 LABEL maintainer="matthieu.corageoud@gmail.com"
-LABEL version="1.8.0"
+LABEL version="2.0.0"
 LABEL description="ConnectIQ tester"
 
 # install required dependencies
