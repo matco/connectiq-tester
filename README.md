@@ -24,7 +24,7 @@ The flag `-v` binds the folder containing your application to the `app` folder i
 
 ### Note on deprecated positional arguments
 
-In previous versions positional arguments were used to specify the device and the certificate path. Device was first and cert path was second. You can still use the docker command with positional arguments but you will receive a warning. In some future version this will be removed and the above described named arguments will be used. If you are using positional arguments, you are advised to change them.
+In previous versions positional arguments were used to specify the device and the certificate path. Device was first and certificate path was second. You can still use the docker command with positional arguments but you will receive a warning. In some future version this will be removed and the above described named arguments will be used. If you are using positional arguments, you are advised to change them.
 
 ## Examples
 
@@ -50,7 +50,7 @@ To relax the type checking when building the application, just run:
 docker run -v /path/to/your/app:/app -w /app ghcr.io/matco/connectiq-tester:latest --type-check-level=2
 ```
 
-This will run the compiler with type checking set to Informative, whilst using the default device and a auto-generated certificate.
+This will run the compiler with type checking set to Informative, whilst using the default device and an auto-generated certificate.
 
 ## Copyright
 
