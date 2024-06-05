@@ -1,8 +1,35 @@
 #!/bin/bash
 
-#retrieve parameters
+# Allow deprecated positional argument usage and set some defaults
 DEVICE_ID=${1:-fenix7}
 CERTIFICATE_PATH=$2
+TYPE_CHECK_LEVEL=${3:-3}
+
+# Parse arguments
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --device=*)
+      DEVICE_ID="${1#*=}"
+      ;;
+    --certificate-path=*)
+      CERTIFICATE_PATH="${1#*=}"
+      ;;
+    --type-check-level=*)
+      TYPE_CHECK_LEVEL="${1#*=}"
+      ;;
+    # Warn about deprecated usage
+    *)
+      printf "**********************************************************\n"
+      printf "Warning: Deprecated positional argument usage: '${1}'.\n"
+      printf "**********************************************************\n"
+  esac
+  shift
+done
+
+# Display parsed arguments 
+printf "Argument(device): ${DEVICE_ID}\n"
+printf "Argument(certificate-path): ${CERTIFICATE_PATH}\n"
+printf "Argument(type-check-level): ${TYPE_CHECK_LEVEL}\n"
 
 #fail if one of the commands fails
 set -e
@@ -37,7 +64,7 @@ fi
 #compile application
 info "Compiling application..."
 
-monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l 3
+monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l "${TYPE_CHECK_LEVEL}"
 
 #check if the compiler produced a resulting program file
 if [[ ! -f bin/app.prg ]]; then
