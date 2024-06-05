@@ -11,8 +11,8 @@ The image requires to bind the code of your application to a folder in the conta
 The Docker command has the following optional parameters:
 
 - --device=DEVICE_ID: the id of one device supported by your application, as listed in your `manifest.xml` file, that will be used to run the tests. If you don't specify a device id, it will default to `fenix7`.
-- -- certificate-path=CERT_PATH: the path of the certificate that will be used to compile the application relatively to the folder of your application. If you don't provide one, a temporary certificate will be generated automatically.
-- -- type-check-level=LEVEL: the type check level to use when building the application. By default `Strict` type checking is used but you can change this by using any of the values described [here](https://developer.garmin.com/connect-iq/monkey-c/monkey-types/): 0 = Silent | 1 = Gradual | 2 = Informative | 3 = Strict [default].
+- --certificate-path=CERT_PATH: the path of the certificate that will be used to compile the application relatively to the folder of your application. If you don't provide one, a temporary certificate will be generated automatically.
+- --type-check-level=LEVEL: the type check level to use when building the application. By default `Strict` type checking is used but you can change this by using any of the values described [here](https://developer.garmin.com/connect-iq/monkey-c/monkey-types/): 0 = Silent | 1 = Gradual | 2 = Informative | 3 = Strict [default].
 
 The simplest command is the following:
 
