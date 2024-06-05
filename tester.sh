@@ -5,6 +5,12 @@ DEVICE_ID=${1:-fenix7}
 CERTIFICATE_PATH=$2
 TYPE_CHECK_LEVEL=${3:-3}
 
+# Sanitize deprecated positional arguments if named arguments are used 
+# Ex.: /tester.sh --type-check-level=2 will pick up DEVICE_ID = '-type-check-level=2'
+# This sanitization can be removed once positional arguments are truely deprecated
+if  [[ $DEVICE_ID == --* ]]; then DEVICE_ID=""; fi
+if  [[ $CERTIFICATE_PATH == --* ]]; then CERTIFICATE_PATH=""; fi
+
 # Parse arguments
 while [ $# -gt 0 ]; do
   case "$1" in
