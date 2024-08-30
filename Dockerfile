@@ -1,8 +1,9 @@
 FROM ubuntu:jammy as downloader
 
-LABEL maintainer="matthieu.corageoud@gmail.com"
-LABEL version="2.0.0"
-LABEL description="ConnectIQ tester"
+LABEL org.opencontainers.image.authors="matthieu.corageoud@gmail.com"
+LABEL org.opencontainers.image.version="2.0.0"
+LABEL org.opencontainers.image.description="ConnectIQ tester"
+LABEL org.opencontainers.image.source=https://github.com/matco/connectiq-tester
 
 # install required dependencies
 # curl, jq, wget, unzip are required to download the SDK
