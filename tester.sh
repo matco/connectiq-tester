@@ -5,7 +5,8 @@ DEVICE_ID=${1:-fenix7}
 CERTIFICATE_PATH=$2
 
 #fail if one of the commands fails
-set -e
+#BUG it's not possible to set this flag, as monkeydo returns a non-zero exit code even when tests succeed
+#set -e
 
 #kill child processes when this scripts exists
 trap 'kill $(jobs -p)' EXIT
@@ -59,7 +60,7 @@ sleep 5
 #run tests
 info "Running tests..."
 
-#monkeydo exit is always 0 even when tests fail!
+#monkeydo exit code is always 1 even when tests succeed!
 #we need to collect the stdout of the test to check the result
 result_file=/tmp/result.txt
 monkeydo bin/app.prg "$DEVICE_ID" -t > $result_file
