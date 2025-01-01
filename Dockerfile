@@ -1,4 +1,4 @@
-FROM ubuntu:jammy as downloader
+FROM ubuntu:jammy AS downloader
 
 LABEL org.opencontainers.image.authors="matthieu.corageoud@gmail.com"
 LABEL org.opencontainers.image.version="2.1.1"
@@ -30,7 +30,7 @@ RUN /root/downloader.sh $CONNECT_IQ_HOME $CONNECT_IQ_VERSION
 COPY devices.zip /tmp/devices.zip
 RUN unzip /tmp/devices.zip -d /connectiq-devices
 
-FROM ubuntu:jammy as tester
+FROM ubuntu:jammy AS tester
 
 # install required dependencies
 # libwebkit2gtk-4.0-37, libusb-1.0-0, libsm6 and xvfb are required by the simulator
