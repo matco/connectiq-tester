@@ -15,11 +15,11 @@ RUN apt-get update && apt-get -y install \
 	&& apt-get clean
 
 # prepare ConnectIQ home folder
-ENV CONNECT_IQ_HOME /connectiq
+ENV CONNECT_IQ_HOME=/connectiq
 RUN mkdir -p ${CONNECT_IQ_HOME}
 
 # hardcoding the version for now
-ENV CONNECT_IQ_VERSION 7.4.3
+ENV CONNECT_IQ_VERSION=7.4.3
 
 # download the SDK
 COPY downloader.sh /root/downloader.sh
@@ -44,14 +44,14 @@ RUN apt-get update && apt-get -y install \
 	&& apt-get clean
 
 # prepare ConnectIQ home folder
-ENV CONNECT_IQ_HOME /connectiq
+ENV CONNECT_IQ_HOME=/connectiq
 RUN mkdir -p ${CONNECT_IQ_HOME}
 
 # retrieve downloaded SDK from the downloader image
 COPY --from=downloader /connectiq /connectiq
 
 # add ConnectIQ bin folder to the path
-ENV PATH ${PATH}:${CONNECT_IQ_HOME}/bin
+ENV PATH=${PATH}:${CONNECT_IQ_HOME}/bin
 
 # manage device files
 # devices bits must be put in /root/.Garmin/ConnectIQ/Devices/ because this path is hard-coded in the compiler and in the simulator!
