@@ -1,10 +1,5 @@
 FROM ubuntu:jammy AS downloader
 
-LABEL org.opencontainers.image.authors="matthieu.corageoud@gmail.com"
-LABEL org.opencontainers.image.version="2.2.0"
-LABEL org.opencontainers.image.description="ConnectIQ tester"
-LABEL org.opencontainers.image.source=https://github.com/matco/connectiq-tester
-
 # install required dependencies
 # curl, jq, wget, unzip are required to download the SDK
 RUN apt-get update && apt-get -y install \
@@ -31,6 +26,11 @@ COPY devices.zip /tmp/devices.zip
 RUN unzip /tmp/devices.zip -d /connectiq-devices
 
 FROM ubuntu:jammy AS tester
+
+LABEL org.opencontainers.image.authors="matthieu.corageoud@gmail.com"
+LABEL org.opencontainers.image.version="2.2.0"
+LABEL org.opencontainers.image.description="ConnectIQ tester"
+LABEL org.opencontainers.image.source=https://github.com/matco/connectiq-tester
 
 # install required dependencies
 # libwebkit2gtk-4.0-37, libusb-1.0-0, libsm6 and xvfb are required by the simulator
