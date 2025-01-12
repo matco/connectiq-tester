@@ -28,7 +28,7 @@ RUN unzip /tmp/devices.zip -d /connectiq-devices
 FROM ubuntu:jammy AS tester
 
 LABEL org.opencontainers.image.authors="matthieu.corageoud@gmail.com"
-LABEL org.opencontainers.image.version="2.2.0"
+LABEL org.opencontainers.image.version="2.3.0"
 LABEL org.opencontainers.image.description="ConnectIQ tester"
 LABEL org.opencontainers.image.source=https://github.com/matco/connectiq-tester
 
