@@ -2,7 +2,7 @@
 
 ConnectIQ Tester is a Docker image that can be used to run the tests "Run No Evil" of a ConnectIQ application. The image contains the SDK, the device bits and the simulator.
 
-The image currently contains ConnectIQ SDK version `8.1.1` and the device files retrieved on `2025-05-26`.
+The image currently contains ConnectIQ SDK version `8.2.1` and the device files retrieved on `2025-07-08`.
 
 ## Usage
 
