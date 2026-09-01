@@ -6,11 +6,12 @@ FROM ghcr.io/matco/connectiq-tester-resources:${RESOURCES_VERSION} AS resources
 FROM ubuntu:jammy AS downloader
 
 # install required dependencies
-# curl, jq, wget are required to download the SDK
+# curl, jq, wget, unzip are required to download the SDK
 RUN apt-get update && apt-get -y install \
 	curl \
 	jq \
 	wget \
+	unzip \
 	&& apt-get clean
 
 # prepare ConnectIQ home folder
