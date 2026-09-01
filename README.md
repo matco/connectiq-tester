@@ -1,8 +1,8 @@
 # ConnectIQ Tester
 
-ConnectIQ Tester is a Docker image that can be used to run the tests "Run No Evil" of a ConnectIQ application. The image contains the SDK, the device bits and the simulator.
+ConnectIQ Tester is a Docker image that can be used to run the tests "Run No Evil" of a ConnectIQ application. The image contains the SDK, the device bits, the device fonts and the simulator.
 
-The image currently contains ConnectIQ SDK version `9.2.0` and the device files retrieved on `2026-06-10`.
+The image currently contains ConnectIQ SDK version `9.2.0` and the device files retrieved on `2026-08-31`.
 
 ## Usage
 
@@ -32,6 +32,18 @@ docker run -v /path/to/your/app:/app -w /app ghcr.io/matco/connectiq-tester:late
 ```
 In this case, the application will be tested using a Venu 2 and the certificate used to compile the application will be `/path/to/your/app/certificate/key.der`.
 
+## Resources
+
+The simulator needs devices (in `~/.Garmin/ConnectIQ/Devices`) and fonts (in `~/.Garmin/ConnectIQ/Fonts`) files.
+
+These files are too large and are the property of Garmin, so they are not versioned in this repository. Instead, they are published in a dedicated image, `ghcr.io/matco/connectiq-tester-resources`, from which the tester image copies them at build time. This image is built manually, using the ConnectIQ folder of a local SDK Manager installation as the build context:
+```
+docker build -f resources/Dockerfile -t ghcr.io/matco/connectiq-tester-resources:2026-08-31 "$HOME/.Garmin/ConnectIQ"
+docker push ghcr.io/matco/connectiq-tester-resources:2026-08-31
+```
+
+The tag of the resources image used by the tester image is the `RESOURCES_VERSION` build argument of the `Dockerfile`.
+
 ## Copyright
 
-All the resources contained in the archive `devices.zip` are the property of Garmin. These resources have been fetched from the Garmin website and have been included in this repository to facilitate the creation of the Docker image.
+All the resources contained in the images `ghcr.io/matco/connectiq-tester-resources` are the property of Garmin. These resources have been fetched from the Garmin website and have been published to facilitate the creation of the Docker image.

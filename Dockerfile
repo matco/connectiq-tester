@@ -1,12 +1,16 @@
+# the devices and fonts files are stored in a dedicated image because they are too big to be versioned in Git
+# this image is built and published manually, see resources/Dockerfile
+ARG RESOURCES_VERSION=2026-08-31
+FROM ghcr.io/matco/connectiq-tester-resources:${RESOURCES_VERSION} AS resources
+
 FROM ubuntu:jammy AS downloader
 
 # install required dependencies
-# curl, jq, wget, unzip are required to download the SDK
+# curl, jq, wget are required to download the SDK
 RUN apt-get update && apt-get -y install \
 	curl \
 	jq \
 	wget \
-	unzip \
 	&& apt-get clean
 
 # prepare ConnectIQ home folder
@@ -19,11 +23,6 @@ ENV CONNECT_IQ_VERSION=9.2.0
 # download the SDK
 COPY downloader.sh /root/downloader.sh
 RUN /root/downloader.sh $CONNECT_IQ_HOME $CONNECT_IQ_VERSION
-
-# manage device files
-# TODO find a way to download device bits from Garmin website
-COPY devices.zip /tmp/devices.zip
-RUN unzip /tmp/devices.zip -d /connectiq-devices
 
 FROM ubuntu:jammy AS tester
 
@@ -56,9 +55,12 @@ ENV PATH=${PATH}:${CONNECT_IQ_HOME}/bin
 # there is an undocumented option named "--override-devices-json" in the compiler class "com.garmin.monkeybrains.Monkeybrains.class"
 # this option allows to specify the paths where the devices bits are stored
 # unfortunately there is no such option for the simulator
-RUN mkdir -p /root/.Garmin/ConnectIQ/Devices
-# retrieve devices files from the downloader image
-COPY --from=downloader /connectiq-devices /root/.Garmin/ConnectIQ/Devices
+COPY --from=resources /Devices /root/.Garmin/ConnectIQ/Devices
+
+# manage font files
+# fonts must be put in /root/.Garmin/ConnectIQ/Fonts/ because this path is hard-coded in the simulator
+# without them, the simulator is unable to rasterize any text and fails with "Invalid Font Specified"
+COPY --from=resources /Fonts /root/.Garmin/ConnectIQ/Fonts
 
 # copy custom tester script
 COPY tester.sh "${CONNECT_IQ_HOME}/bin/tester.sh"
