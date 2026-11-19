@@ -17,16 +17,16 @@ CONNECTIQ_SDK_INFO_URL="${CONNECTIQ_SDK_URL}/sdks.json"
 #retrieve latest version if no version is specified
 if [[ -z $VERSION ]]
 then
-	VERSION=$(/usr/bin/curl -s "${CONNECTIQ_SDK_INFO_URL}" | /usr/bin/jq -r '.[].version' | /usr/bin/sort | /usr/bin/tail -1)
+	VERSION=$(curl -s "${CONNECTIQ_SDK_INFO_URL}" | jq -r '.[].version' | sort | tail -1)
 	echo "Using the latest version ($VERSION)"
 fi
 
 #retrieve SDK file name from the version
-filename=$(/usr/bin/curl -s "${CONNECTIQ_SDK_INFO_URL}" | /usr/bin/jq -r --arg version "$VERSION" '.[] | select(.version==$version) | .linux')
+filename=$(curl -s "${CONNECTIQ_SDK_INFO_URL}" | jq -r --arg version "$VERSION" '.[] | select(.version==$version) | .linux')
 url="${CONNECTIQ_SDK_URL}/${filename}"
 echo "Downloading from $url"
 
-/usr/bin/wget -q "${url}" -O /tmp/connectiq.zip;
-/usr/bin/unzip /tmp/connectiq.zip -d "${DESTINATION}"
+wget -q "${url}" -O /tmp/connectiq.zip;
+unzip /tmp/connectiq.zip -d "${DESTINATION}"
 
 echo "$VERSION"
