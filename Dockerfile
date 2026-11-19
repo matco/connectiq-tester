@@ -1,6 +1,6 @@
 # the devices and fonts files are stored in a dedicated image because they are too big to be versioned in Git
 # this image is built and published manually, see resources/Dockerfile
-ARG RESOURCES_VERSION=2026-08-31
+ARG RESOURCES_VERSION=2026-11-19
 FROM ghcr.io/matco/connectiq-tester-resources:${RESOURCES_VERSION} AS resources
 
 FROM ubuntu:jammy AS downloader
@@ -19,7 +19,7 @@ ENV CONNECT_IQ_HOME=/connectiq
 RUN mkdir -p ${CONNECT_IQ_HOME}
 
 # hardcoding the version for now
-ENV CONNECT_IQ_VERSION=9.2.0
+ENV CONNECT_IQ_VERSION=9.3.0
 
 # download the SDK
 COPY downloader.sh /root/downloader.sh
