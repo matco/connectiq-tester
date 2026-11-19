@@ -38,7 +38,10 @@ fi
 #compile application
 info "Compiling application..."
 
-monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l 3
+if ! monkeyc -f monkey.jungle -d "$DEVICE_ID" -o bin/app.prg -y "$CERTIFICATE_PATH" -t -l 3; then
+	info "Compilation failed!"
+	exit 1
+fi
 
 #check if the compiler produced a resulting program file
 if [[ ! -f bin/app.prg ]]; then
