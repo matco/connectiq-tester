@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #retrieve parameters
-PATH=$1
+DESTINATION=$1
 VERSION=$2
 
 #check parameters
-if [[ -z $PATH ]]
+if [[ -z $DESTINATION ]]
 then
 	echo "Usage: path [version]"
 	exit 1
@@ -27,6 +27,6 @@ url="${CONNECTIQ_SDK_URL}/${filename}"
 echo "Downloading from $url"
 
 /usr/bin/wget -q "${url}" -O /tmp/connectiq.zip;
-/usr/bin/unzip /tmp/connectiq.zip -d "${PATH}"
+/usr/bin/unzip /tmp/connectiq.zip -d "${DESTINATION}"
 
 echo "$VERSION"
